@@ -1,0 +1,19 @@
+var p = 0;
+$(document).ready(function(){
+    // p = $('.vib-v2-all-card-home').offset().top - 30;
+    p = 450;
+    $(window).scroll(function() { 
+      var e = $(window).scrollTop(); 
+      if(e > p) {
+        $('.vib-v2-all-card-home').addClass('sticky');
+        $('body#content').addClass('.sticky-active ');
+      }
+       
+      else {
+        $('.vib-v2-all-card-home').removeClass('sticky');
+        $('body#content').removeClass('.sticky-active ');
+      }
+      
+    }) 
+
+  });

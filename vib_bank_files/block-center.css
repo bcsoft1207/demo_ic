@@ -1,0 +1,282 @@
+.vib-banner-center {
+    margin-top: 48px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.vib-banner-center .title {
+    margin-bottom: 32px;
+}
+
+.vib-banner-center .content {
+    clear: both;
+}
+
+.vib-banner-center .row {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.vib-banner-center .col-md-4 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.vib-banner-center .box-content {
+    text-align: center;
+    padding-bottom: 25px;
+    transition: 0.5s all;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0;
+}
+
+.vib-banner-center .col-md-4 .vib-v2-btn-dk01 {
+    background: none;
+    color: #000
+}
+
+.vib-banner-center .col-md-4 .vib-v2-btn-dk01::before {
+    transition: 0.5s all;
+    opacity: 0;
+    background: var(--bg-gradient-orange-1);
+}
+
+.vib-banner-center .box-content img {
+    max-width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    transition: 0.6s all;
+}
+
+.vib-banner-center .content .image {
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    background: none;
+}
+
+.vib-banner-center .content .info {
+ 
+    width: 100%;
+}
+
+.vib-banner-center .button-info {
+    margin-top: -20px;
+}
+
+.vib-banner-center .content h4 {
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 34px;
+    text-align: center;
+    padding: 24px 20px 0 20px;
+    margin: 0;
+    transition: 0.5s all;
+}
+.vib-banner-center .content h4 a{color: #000; transition: 0.2s all;}
+
+.vib-banner-center .content p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    display: block;
+   margin-top: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 24px;  
+
+}
+.vib-banner-center .content .button-info {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding-top: 0.5em;
+    transition: 0.5s all;
+}
+
+@media (max-width: 1024px) {
+    .vib-banner-center .content .button-info{opacity: 1; height: auto;}
+    .container {
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .vib-banner-center {
+        margin-bottom: 40px;
+    }
+
+    .vib-banner-center .title {
+        margin-bottom: 24px;
+    }
+
+    .vib-banner-center .content .info {
+        position: relative;
+    }
+
+    .vib-banner-center .content .image {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .vib-banner-center .content h4 {
+        padding: 16px 12px 0 12px;
+        font-size: 20px;
+    line-height: 28px;
+    min-height: 72px;
+    }
+
+    .vib-banner-center .content p {
+        height: auto;
+        padding: 0;
+        margin-top: 5px;
+        padding: 0 12px;
+        min-height: 72px;
+    }
+
+    .vib-banner-center .col-md-4 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .vib-banner-center .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    .vib-banner-center .content .image {
+        padding-bottom: 5px;
+    }
+
+    .vib-banner-center .col-md-4 .box-content {
+        box-shadow: 0px 1px 5px rgb(188 188 188 / 25%);
+        background: #fff;
+        padding-bottom: 5px;
+        border-radius: 5px;
+    }
+
+    .vib-banner-center .vib-v2-btn-dk01::after {
+        background: var(--icon-Angle_right_black) no-repeat;
+        background-size: 20px;
+        content: "";
+        width: 24px;
+        height: 24px;
+        display: block;
+        margin-left: 0px;
+        float: right;
+        position: relative;
+        top: 3px;
+    }
+
+    .vib-banner-center .col-md-4 .image p {
+        transform: rotate3d(1,0,0,0);
+        max-height: 100px;
+        min-height: 66px;
+        opacity: 1;
+        margin-top: 8px;
+        font-weight: 500;
+        line-height: 22px;
+    }
+    .vib-banner-center .content .info.en h4{/*min-height: auto;*/}
+}
+@media (max-width: 1199px) {
+.vib-banner-center .content h4{font-size: 20px;}
+}
+@media (max-width: 767px) {
+    .vib-banner-center .content .image{padding-bottom: 0;}
+    .vib-banner-center .col-md-4 .box-content{padding-bottom: 0;}
+    .vib-banner-center .content h4{min-height: auto; font-size: 24px; line-height: 38px; font-weight: 600; padding-top: 20px}
+    .vib-banner-center .content p {
+        min-height: auto;
+        padding: 0 20px;
+        margin-bottom: 0;
+    }
+
+    .vib-banner-center .col-md-4:not(:last-child) {
+        margin-bottom: 25px;
+    }
+
+    .vib-banner-center .col-md-4 .image p {
+        transform: rotate3d(1,0,0,0);
+        max-height: 100px;
+        min-height: auto;
+        opacity: 1;
+        margin-top: 8px;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+    .vib-banner-center .content .button-info{padding-top:0; margin-top:0; margin-bottom: 10px;}
+}
+
+@media (min-width: 1024px) {
+    
+    .vib-banner-center .box-content:hover a{color: var(--color-dard-orange);}
+    .vib-banner-center .col-md-4 .box-content:hover .image p {
+        /*transform: rotate3d(1,0,0,0);
+        max-height: 100px;
+        min-height: 60px;
+        opacity: 1;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;*/
+    }
+    .vib-banner-center .col-md-4 .box-content:hover .image .button-info {
+        height: 70px;
+        opacity: 1;
+        padding-bottom: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+    }
+
+    .vib-banner-center .col-md-4 .box-content:hover .image img {
+        transform: scale(1.1);
+        transition: 0.6s all;
+    }
+
+    .vib-banner-center .col-md-4 .box-content:hover .vib-v2-btn-dk01::before  {
+        opacity: 1;
+    }
+
+    
+    /* .vib-banner-center .col-md-4:hover .vib-v2-btn-dk01:hover::before {
+        transition: all 0.5s ease;
+        background: var(--bg-color-mono-1);
+        opacity: 1;
+    } */
+    .vib-banner-center .col-md-4  .vib-v2-btn-dk01::after {
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: -1;
+        transition: all 0.5s ease;
+    }     
+
+    .vib-banner-center .col-md-4 .box-content:hover .vib-v2-btn-dk01:hover::after {
+        transition: all 0.5s ease;
+        background: var(--bg-color-mono-1);
+        opacity: 1;
+    }    
+
+    .vib-banner-center .col-md-4 .box-content .vib-v2-btn-dk01:hover {
+        color: #fff;
+    }
+
+    .vib-banner-center .col-md-4 .box-content:hover {
+      /*  background: #fff;
+        box-shadow: 0px 1px 5px rgb(188 188 188 / 25%);*/
+       
+        overflow: hidden;
+        transition: 0.5s all;
+    }
+}
+@media screen and (min-width: 1024px) { .vib-banner-center .vib-v2-btn-dk01::after { background-image: none; } }

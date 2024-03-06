@@ -1,0 +1,653 @@
+.view-detail {
+    position: relative;
+}
+
+.view-detail::after, .view-link::after {
+    width: 24px;
+    height: 24px;
+    content: "";
+    position: relative;
+    background: var(--icon-Angle_right_black) center center no-repeat;
+    right: 0px;
+    top: 8px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    background-size: 30px;
+    position: absolute;
+    transition: 0.6s ease-in;
+}
+
+.title .view-link-text::after {
+    width: 24px;
+    height: 24px;
+    content: "";
+    position: relative;
+    background: var(--icon-Angle_right_black) center center no-repeat;
+    right: 0px;
+    top: 8px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    background-size: 30px;
+    position: absolute;
+    left: 0;
+    transition: 0.5s ease-out;
+}
+
+.title {
+    float: left;
+    position: relative;
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.vib-banner-top .title {
+    margin-bottom: 0;
+}
+
+.title a {
+    margin: 0;
+    line-height: 40px;
+}
+.vib-banner-top .view-link::after{
+display: none;
+}
+@media (min-width: 1024px) {
+    .vib-banner-top .title:hover .view-link-Nottablet h3{color: var(--color-dard-orange);}
+    .title:hover .view-link-text::after {
+        background: var(--icon-Angle_right_orange) center center no-repeat;
+        background-size: 24px;
+        transition: 0.5s ease-out ;
+        left: 100%;
+    }
+
+    .title:hover .view-link-text {
+        display: block;
+        opacity: 1;
+        font-size: 20px;
+    }
+
+    .title:hover .view-link::after {
+        opacity: 0;
+        transition: 0.1s ease-out;
+    }
+}
+
+.title .view-link {
+    margin-left: 10px;
+    color: var(--color-dard-orange);
+    font-weight: 600;
+    line-height: 34px;
+    margin-left: 0;
+    position: relative;
+    padding-right: 30px;
+}
+
+.title .view-link-text {
+    color: var(--color-dard-orange);
+    font-size: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    opacity: 0;
+    position: relative;
+    transition: 0.5s all;
+}
+
+.title h3 {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 38px;
+    color: #000000;
+    text-align: center;
+    margin: 0;
+}
+
+body .vib-v2-wrapper_new {
+    max-width: 1110px;
+}
+
+.vib-banner-top {
+    margin-top: 0px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.vib-banner-top a::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+}
+
+.vib-banner-top .box-content:hover .a-view-link {
+    color: var(--color-dard-orange);
+}
+
+.vib-banner-top .box-content:hover .a-view-link::after {
+    background: var(--icon-Angle_right_orange) no-repeat ;
+    background-size: 24px;
+}
+
+.a-view-link::after {
+    background: var(--icon-Angle_right_black) no-repeat ;
+    background-size: 24px;
+    content: "";
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin-left: 4px;
+}
+
+.vib-banner-top .container {
+    position: relative;
+}
+
+.vib-banner-top h3 {
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 34px;
+    color: #000000;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.vib-banner-top .box-content {
+    background: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    align-items:center;
+}
+
+.vib-banner-top p {
+    font-weight: 500; 
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 16px;
+    padding-right: 110px;
+}
+.vib-banner-top .download-app p{padding-right:10px;}
+
+.vib-banner-top .col-left {
+    float: left;
+    display: flex;
+    justify-content: left;
+    max-height: 330px;
+}
+
+.vib-banner-top .left-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.vib-banner-top .left-content .download-app {
+    background: #F9FAFB;
+    border-radius: 3px;
+    padding: 8px 12px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 320px;
+}
+
+.vib-banner-top .left-content .download-app img {
+    max-width: 80px;
+    display: inline-block;
+}
+
+.vib-banner-top .left-content .download-app .scan-qa {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.vib-banner-top .left-content .download-app p {
+    display: inline-block;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    padding-left: 15px;
+}
+
+
+.vib-banner-top .left-content .download-app .scan-qa .scan-animation {
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    animation-name: zigzag;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.vib-banner-top .col-right {
+    float: left;
+    padding-right: 0;
+    text-align: right;
+    padding-left: 45px;
+}
+
+.vib-banner-top .col-right img {
+    position: relative;
+    transition: all 0.5s;
+    max-width: 350px;
+    float: left;
+    z-index: 1;
+}
+
+.vib-banner-top .image-mobile {
+    display: none;
+}
+
+.vib-banner-top .image-desktop {
+    display: block;
+    padding-top: 32px;
+    padding-right: 60px;
+}
+
+.vib-banner-top .content-amination .icon {
+    width: 65px;
+    float: left;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.vib-banner-top .content-amination .text {
+    color: #fff;
+    padding-top: 10px;
+    float: left;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.vib-banner-top .content-amination .text h4 {
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.vib-banner-top .content-amination .text p {
+    color: #fff;
+    font-size: 11.3672px;
+    line-height: 19px;
+}
+
+.vib-banner-top .content-amination .icon img {
+    max-width: 100%;
+    ; }
+
+.vib-banner-top .content-amination .arrow {
+    width: 40px;
+    float: left;
+    position: absolute;
+    right: 10px;
+    top: 17px;
+}
+
+.vib-banner-top .bgk-amination {
+    width: 300px;
+    height: 72px;
+    background-size: contain;
+    position: absolute;
+    top: 57px;
+    left: 73px;
+    z-index: 1;
+    background-repeat: no-repeat;
+    pointer-events:none;
+}
+
+.vib-banner-top .content-amination .item {
+    position: absolute;
+    top: 55px;
+    left: 71px;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.8s all;
+}
+
+.vib-banner-top .content-amination .item img {
+    width: 300px;
+}
+
+.content-amination.item-1 > .item:nth-child(2) {
+    opacity: 1;
+}
+
+.content-amination.item-2 > .item:nth-child(3) {
+    opacity: 1;
+}
+
+.content-amination.item-3 > .item:nth-child(4) {
+    opacity: 1;
+}
+
+.a-view-link {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+.view-link-tablet {
+    display: none;
+}
+
+@keyframes zigzag {
+    from {
+        background: linear-gradient(0deg, #FF5B23 0%, rgba(255, 167, 137, 0.536896) 24.43%, rgba(255, 255, 255, 0) 100%);
+        top: 0;
+    }
+
+    50% {
+        background: linear-gradient(0deg, #FF5B23 0%, rgba(255, 167, 137, 0.536896) 24.43%, rgba(255, 255, 255, 0) 100%);
+        top: 95%;
+    }
+
+    51% {
+        background: linear-gradient(180deg, #FF5B23 0%, rgba(255, 167, 137, 0.536896) 24.43%, rgba(255, 255, 255, 0) 100%);
+        top: 95%;
+    }
+
+    100% {
+        background: linear-gradient(180deg, #FF5B23 0%, rgba(255, 167, 137, 0.536896) 24.43%, rgba(255, 255, 255, 0) 100%);
+        top: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .vib-banner-top .image-desktop a{pointer-events: none;}
+    .vib-banner-top p{padding-right: 0;}
+    .title h3 {
+        font-size: 26px;
+        line-height: 34px;
+    }
+    .view-link-tablet {
+        display: block;
+    }
+    .view-link-tablet + .view-link-Nottablet{
+        display: none;
+    }
+    .view-detail::after, .view-link::after {
+        background-size: 28px;
+        top: 6px;
+    }
+
+    .vib-banner-top .container {
+        padding: 0;
+    }
+
+    .vib-banner-top .col-left {
+        padding-left: 20px;
+        padding-right: 60px;
+        justify-content: left;
+    }
+
+    .vib-banner-top h3 {
+        font-size: 20px;
+        line-height: 24px;
+        justify-content: start;
+    }
+
+    .vib-banner-top .title {
+        margin-bottom: 0;
+    }
+    .vib-banner-top .col-right {
+        padding-left: 0;
+    }
+    .vib-banner-top .col-right img {
+        max-width: 100%;
+        max-width: 423px;
+    }
+    .vib-banner-top .bgk-amination {
+        top: 55px;
+        left: 24px; 
+    }
+    .vib-banner-top .content-amination .item {
+        top: 53px;
+        left: 22px;
+    }
+    .vib-banner-bottom .title { 
+        margin-bottom: 0;
+    }
+
+    .download-app-mobile {
+        display: none;
+    }
+
+    .title .view-link-text {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .vib-banner-top p{padding-right: 0;}
+    .vib-banner-top .content-amination .item {
+        margin-left: -148px;
+        left: 50%;
+    }
+    .vib-banner-top .bgk-amination {
+        display: none;
+    }
+    
+    .vib-banner-top .download-app-mobile {
+        display: block;
+    }
+
+    .vib-banner-top .download-app {
+        display: none;
+    }
+
+    .vib-banner-top .view-link::after {
+        display: none;
+    }
+
+    .title h3 {
+        font-size: 26px;
+        line-height: 34px;
+    }
+
+    .title .view-link {
+        line-height: 34px;
+    }
+
+    .vib-banner-top .title .view-link {
+        padding-right: 0;
+    }
+
+    .vib-banner-top h3 {
+        margin-bottom: 0;
+    }
+
+    .view-detail::after, .view-link::after {
+        background-size: 28px;
+        top: 6px;
+    }
+
+    .vib-banner-top .title {
+        margin-bottom: 8px;
+        justify-content: center;
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .vib-banner-top .title .view-link-text {
+        display: none;
+    }
+
+    .vib-banner-top .box-content {
+        display: block;
+    }
+
+    .vib-banner-top .col-right img {
+        position: relative;
+        max-width: 420px;
+    }
+
+    .vib-banner-top .col-left,.vib-banner-top .left-content {
+        min-height: auto;
+        max-width: 100%;
+    }
+
+    .vib-banner-top .col-left {
+        justify-content:center;
+        padding: 0 20px;
+    }
+
+    .vib-banner-top .col-right {
+        padding-left: 20px;
+        padding-left: 0;
+    }
+
+    .vib-banner-top .left-content {
+        margin-top: 32px;
+        text-align: center;
+    }
+
+    .vib-banner-top .container {
+        padding: 0;
+    }
+
+    .vib-banner-top .image-desktop {
+        padding: 32px 0 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .vib-banner-top h3 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 38px;
+        text-align: center;
+    }
+
+    .vib-banner-top .left-content p {
+        text-align: center;
+    }
+
+    .vib-banner-top .left-content .download-app {
+        width: 90%;
+        margin: 0 auto;
+        display: none;
+    }
+
+
+    .vib-banner-bottom .title {
+        margin-bottom: 0;
+    }
+
+    .vib-banner-top .content-amination {
+        position: absolute;
+        left: 0px;
+        top: 55px;
+        width: 100%;
+        background-size: contain;
+        height: 70px;
+        z-index: 1;
+        background-position: center;
+        background-repeat: no-repeat;
+        
+    }
+
+    .vib-banner-top .content-amination .item {
+        top: -3px;
+    }
+    .title .view-link-text {
+        display: none;
+    }    
+}
+/*@media (max-width: 400px) {
+    .vib-banner-top .image-desktop{padding:32px 48px 0 25px;}
+    .vib-banner-top .content-amination{background-position: 43px;}
+    .vib-banner-top .content-amination .item{left: 43px;}
+}*/
+@media (min-width: 1024px) {
+    .vib-banner-top .download-app-mobile {
+        display: none;
+    }
+
+    .vib-banner-top .col-left {
+        width: 50%;
+        flex: 50%;
+        max-width: 50%;
+        padding-left:0;
+    }
+
+    .vib-banner-top .col-right {
+        width: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+
+    .vib-banner-top .col-right img {
+        max-width: 431px;
+        float: left;
+        transition: all 0.5s;
+    }
+}
+
+.vib-v2-section-header_new .tel_top_home{display: none;}
+@media only screen and (min-width: 1024px){
+
+.vib-v2-link-atm-home-new {
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: 100px;
+    top: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .5s;
+}
+.vib-v2-link-atm-home-new span { 
+        position: absolute;
+        top: 40px;
+        background: #000;
+        white-space: nowrap;
+        font-size: 12px;
+        color: #fff;
+        padding: 2px 10px;
+        border-radius: 15px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: none;
+    }
+.vib-v2-link-atm-home-new:hover span{display: block}
+.vib-v2-link-atm-home-new .icon_atm-home {
+    background: url(/static/theme/2022/icon-map.png) no-repeat;
+    width: 18px;
+    height: 25px;
+    background-size: 100%;
+    display: inline-block;
+    top: 4px;
+    position: relative;
+}
+.vib-v2-header-scroll .vib-v2-link-atm-home-new{top: 13px;}
+}
+
+@media only screen and (max-width: 1023px){
+    .vib-v2-link-atm-home-new{display: none;}
+}

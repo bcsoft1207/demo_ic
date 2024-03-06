@@ -1,0 +1,167 @@
+function load_gg_search_box_containt(cb) {
+    try {
+        if ($("#load_gg_search_box_div").html() == '') {
+            var s_url = '/wps/wcm/connect/VIBSource/sa-default?source=library&srv=cmpnt&cmpntid=' + load_gg_search_box_containt_s_id;
+            $.ajaxSetup({cache: true});
+            $("#load_gg_search_box_div").load(s_url, function() {
+                $.ajaxSetup({cache: false});
+                if (typeof cb === 'function') {
+                    cb();
+                }
+            });
+        } else {
+            if (typeof cb === 'function') {
+                cb();
+            }
+        }
+    } catch (e) {}
+}
+function cb_gg_search_load() {
+    try {
+        var c = window.location.href;
+        c.indexOf("/en/") > 0 && $(".gcse-searchbox-only").attr("data-resultsUrl", link_page_search_en), c.indexOf("/en/promotion/") > 0 && $("#xform").attr("action", "/en/promotion/search"), c.indexOf("/vn/promotion/") > 0 && $("#xform").attr("action", "/vn/promotion/search"), $(".vib-v2-link-search-home").click(function() {
+            $(".vib-v2-search-content").addClass("active"), $(".vib-v2-bg_black").show()
+        }), $(".vib-v2-bg_black").click(function() {
+            $(".vib-v2-search-content").removeClass("active"), $(this).hide()
+        });
+
+        var n = setInterval(function() {
+            "function" == typeof initSearchGoogleTool && setTimeout(function() {
+                initSearchGoogleTool(), console.log("initSearchGoogleTool"), clearInterval(n)
+            }, time_interval_load_search)
+        }, time_interval_load_search)
+    } catch (e) {}
+}
+function load_gg_search_box_containt2(cb) {
+    try {
+        if ($("#load_gg_search_box_div").html() == '') {
+            $(".vib-v2-search-content").removeClass("active");
+            var s_url = '/wps/wcm/connect/VIBSource/sa-default?source=library&srv=cmpnt&cmpntid=' + load_gg_search_box_containt_s_id;
+            $.ajaxSetup({cache: true});
+            $("#load_gg_search_box_div").load(s_url, function() {
+                $.ajaxSetup({cache: false});
+                if (typeof cb === 'function') {
+                    cb();
+                }
+            });
+        } else {
+            if (typeof cb === 'function') {
+                cb();
+            }
+        }
+    } catch (e) {}
+}
+function cb_gg_search_load2() {
+    try {
+        setTimeout(function() {
+            "function" == typeof initSearchGoogleTool && (cb_gg_search_load(), initSearchGoogleTool(), $(".vib-v2-search-content").addClass("active"), $(".vib-v2-bg_black").show(), $(".vib-v2-search-content.active").length ? ($(".vib-v2-search-content.active").find("input.gsc-input").val("").focus(), $(".vib-v2-search-content.active").find(".owner-suggest").addClass("suggest-active")) : ($(".search-in-menu").find("input.gsc-input").val(""), $(".search-in-menu").find(".owner-suggest").addClass("suggest-active")), $(".vib-v2-search-content.search-gg .gsst_a").hide())
+        }, time_interval_load_search)
+    } catch (c) {}
+}
+function load_menu_hamburger_div(type) {
+    try {
+        if ($("#menu_hamburger_div").html() == '') {
+            var menu_hamburger_url = '/wps/wcm/connect/VIBSource/sa-default?source=library&srv=cmpnt&cmpntid=' + menu_hamburger_id;
+            $.ajaxSetup({cache: true});
+            $("#menu_hamburger_div").load(menu_hamburger_url, function() {
+                $.ajaxSetup({cache: false});
+                if (typeof type === 'function') {
+                    type();
+                }
+                load_gg_search_box_containt(cb_gg_search_load);
+            });
+        } else {
+            if (typeof type === 'function') {
+                type();
+            }
+        }
+    } catch (e) {}
+}
+function load_menu_hamburger_menu_click() {
+    try {
+        $(".vib-v2-content_menu").addClass("active");
+        $(".vib-v2-main-menu").addClass("active");
+        $(".vib-v2-bg_black").show();
+        if (typeof disableBodyScroll === 'function') {
+			disableBodyScroll(true, "#vib-v2-list-link-menu-left-1");
+		}
+    } catch (e) {}
+}
+function load_menu_hamburger_login_click() {
+    try {
+        $(".list-tab .tab-id-01").trigger('click');
+        $(".vib-v2-content_menu").removeClass("active");
+        $(".vib-v2-main-menu").removeClass("active");
+        $(".vib-v2-content-form-login").addClass("active");
+        $(".vib-v2-bg_black").show();
+    } catch (e) {}
+}
+function load_menu_hamburger_search_click() {
+    $(".vib-v2-search-content").addClass("active");
+}
+
+//Init place
+var run_init_menu_and_search = false;
+$(".vib-v2-hamburger-menu").on('click touchstart', function(event) {
+    event.stopPropagation();
+    if (!run_init_menu_and_search) {
+        run_init_menu_and_search = true;   
+        load_menu_hamburger_div(function(){
+            load_gg_search_box_containt2(function(){
+                cb_gg_search_load();
+                try {
+                    var n = setInterval(function() {
+                        "function" == typeof initSearchGoogleTool && setTimeout(function() {
+                            initSearchGoogleTool(), console.log("initSearchGoogleTool"), clearInterval(n)
+                        }, time_interval_load_search)
+                    }, time_interval_load_search)
+                } catch (e) {}
+            });
+            load_menu_hamburger_menu_click();
+        });
+    }
+});
+$(".vib-v2-link-login-home").on('click touchstart', function(event) {
+    event.stopPropagation();
+    run_init_menu_and_search = true;
+    load_menu_hamburger_div(load_menu_hamburger_login_click);
+});
+$(".vib-v2-link-search-home").on('click touchstart', function(event) {
+    event.stopPropagation();
+    run_init_menu_and_search = true;
+    load_gg_search_box_containt2(function(){
+        load_menu_hamburger_div(cb_gg_search_load2);
+    });
+});
+$(document).on('click keydown keyup mousemove touchstart touchmove touchend wheel', function(event) {
+    if (!run_init_menu_and_search) {
+        run_init_menu_and_search = true;     
+        console.log('First event type:', event.type);
+        var $target = $(event.target);
+        var isNotMouseMove = event.type !== 'mousemove';
+        if (isNotMouseMove && $target.hasClass("vib-v2-hamburger-menu")) {
+            load_menu_hamburger_div(function(){
+                load_gg_search_box_containt2(function(){
+                    cb_gg_search_load();
+                    try {
+                        var n = setInterval(function() {
+                            "function" == typeof initSearchGoogleTool && setTimeout(function() {
+                                initSearchGoogleTool(), console.log("initSearchGoogleTool"), clearInterval(n)
+                            }, time_interval_load_search)
+                        }, time_interval_load_search)
+                    } catch (e) {}
+                });
+                load_menu_hamburger_menu_click();
+            });
+        } else if (isNotMouseMove && $target.hasClass("icon_search-home")) {
+            load_gg_search_box_containt2(function(){
+                load_menu_hamburger_div(cb_gg_search_load2);
+            });
+        } else if (isNotMouseMove && $target.hasClass("icon_login-home")) {
+            load_menu_hamburger_div(load_menu_hamburger_login_click);
+        } else {
+            load_menu_hamburger_div();
+        }
+    }
+});
+

@@ -1,0 +1,201 @@
+gsap.registerPlugin(Draggable);
+
+let iteration = 0;
+// gets iterated when we scroll all the way to the end or start and wraps around - allows us to smoothly continue the playhead scrubbing in the correct direction.
+
+var MAX_DUPE_TIMES = 2;
+
+var oriItemHTML = $('.cards').html();
+for(var i = 0; i < MAX_DUPE_TIMES; i++) {
+    $('.cards').html($('.cards').html() + oriItemHTML)
+}
+
+// set initial state of items
+gsap.set('.cards .item', {
+    xPercent: 400,
+    opacity: 0,
+    scale: 0
+});
+
+const spacing = 0.1
+  , // spacing of the cards (stagger)
+snapTime = gsap.utils.snap(spacing)
+  , // we'll use this to snapTime the playhead on the seamlessLoop
+cards = gsap.utils.toArray('.cards .item')
+  , // this function will get called for each element in the buildSeamlessLoop() function, and we just need to return an animation that'll get inserted into a master timeline, spaced
+animateFunc = element=>{
+    const tl = gsap.timeline();
+    tl.fromTo(element, {
+        scale: 1,
+        opacity: 1
+    }, {
+        scale: 1,
+        opacity: 1,
+        zIndex: 100,
+        duration: 0.5,
+        yoyo: true,
+        repeat: 1,
+        ease: "power1.in",
+        immediateRender: false
+    }).fromTo(element, {
+        xPercent: 500
+    }, {
+        xPercent: -500,
+        duration: 1,
+        ease: "none",
+        immediateRender: false
+    }, 0);
+    return tl;
+}
+  , seamlessLoop = buildSeamlessLoop(cards, spacing, animateFunc)
+  , playhead = {
+    offset: 0
+}
+  , // a proxy object we use to simulate the playhead position, but it can go infinitely in either direction and we'll just use an onUpdate to convert it to the corresponding time on the seamlessLoop timeline.
+wrapTime = gsap.utils.wrap(0, seamlessLoop.duration())
+  , // feed in any offset (time) and it'll return the corresponding wrapped time (a safe value between 0 and the seamlessLoop's duration)
+scrub = gsap.to(playhead, {
+    // we reuse this tween to smoothly scrub the playhead on the seamlessLoop
+    offset: 0,
+    onUpdate() {
+        seamlessLoop.time(wrapTime(playhead.offset));
+        // convert the offset to a "safe" corresponding time on the seamlessLoop timeline
+    },
+    duration: 0.8,
+    ease: "power3",
+    paused: true
+});
+
+function buildSeamlessLoop(items, spacing, animateFunc) {
+    let rawSequence = gsap.timeline({
+        paused: true
+    }), // this is where all the "real" animations live
+    seamlessLoop = gsap.timeline({
+        // this merely scrubs the playhead of the rawSequence so that it appears to seamlessly loop
+        paused: true,
+        repeat: -1,
+        // to accommodate infinite scrolling/looping
+        onRepeat() {
+            // works around a super rare edge case bug that's fixed GSAP 3.6.1
+            this._time === this._dur && (this._tTime += this._dur - 0.01);
+        },
+        onReverseComplete() {
+            this.totalTime(this.rawTime() + this.duration() * 100);
+            // seamless looping backwards
+        }
+    }), cycleDuration = 0.1 * items.length, dur;
+    // the duration of just one animateFunc() (we'll populate it in the .forEach() below...
+	var oriItems = items;
+	for(var i = 0; i < MAX_DUPE_TIMES; i++) {
+		items = items.concat(oriItems);
+	}
+    // loop through 3 times so we can have an extra cycle at the start and end - we'll scrub the playhead only on the 2nd cycle
+    items.forEach((item,i)=>{
+        let anim = animateFunc(items[i % items.length]);
+        rawSequence.add(anim, i * spacing);
+        dur || (dur = anim.duration());
+    });
+
+    // animate the playhead linearly from the start of the 2nd cycle to its end (so we'll have one "extra" cycle at the beginning and end)
+    seamlessLoop.fromTo(rawSequence, {
+        time: cycleDuration + dur / 2
+    }, {
+        time: "+=" + cycleDuration,
+        duration: cycleDuration,
+        ease: "none"
+    });
+    return seamlessLoop;
+}
+
+// below is the dragging functionality (mobile-friendly too)...
+var draggable = Draggable.create(".drag-proxy", {
+    type: "x",
+    trigger: ".cards",
+    onPress() {
+        this.startOffset = scrub.vars.offset;
+        hovering = true;
+        $('.vib-scroll-animations').removeClass('stop-scroll');
+        
+    },
+    onDrag() {
+        scrub.vars.offset = this.startOffset + (this.startX - this.x) * 0.0004;
+        scrub.invalidate().restart();
+      
+    },
+    onDragEnd() {
+        hovering = false;
+        $('.vib-scroll-animations').removeClass('stop-scroll');
+    }
+});
+
+
+  
+    var hovering = false;
+   /* 
+    var container = document.getElementById('gallery');
+   container.addEventListener('mouseenter', function(e) {
+        hovering = true;
+    });
+
+    container.addEventListener('mouseleave', function(e) {
+        hovering = false;
+    });
+*/
+
+    $('.scrollsection .box').hover(
+        function() {
+            hovering = true;
+        }, function() {
+            hovering = false;
+        }
+      );
+
+
+
+function autoScroll() {
+    setTimeout(function() {
+        if (!hovering) {
+            scrub.vars.offset = scrub.vars.offset + 0.002;
+            scrub.invalidate().restart();
+        }
+        autoScroll();
+    }, 100);
+};
+autoScroll();
+
+
+
+$( '.scrollsection .box').hover(
+    function() {
+     $('.vib-scroll-animations').addClass('stop-scroll');
+    }, function() {
+      $('.vib-scroll-animations').removeClass('stop-scroll');
+    }
+  );
+
+/*
+TODO: ERROR CODE
+if($(window.width() < 767))
+{
+    $( '.scrollsection .box').hover(
+        function() {
+            hovering = true;
+         $('.vib-scroll-animations').removeClass('stop-scroll');
+        }, function() {
+          $('.vib-scroll-animations').addClass('stop-scroll');
+          hovering = false;
+        }
+      );
+}
+
+
+
+
+  $('.scrollsection').on("mousedown", function(e) {
+    $('.scrollsection').addClass('brabbing');
+  });
+
+  $(document).on("mouseup", function(){
+    $('.scrollsection').removeClass('brabbing');
+  });
+ */

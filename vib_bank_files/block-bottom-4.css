@@ -1,0 +1,631 @@
+
+
+       
+.cards {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 340px;
+}
+
+.cards .item {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.drag-proxy {
+    visibility: hidden;
+    position: absolute;
+}
+           
+.vib-banner-bottom {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+
+.vib-banner-bottom .content {
+    background: #fff;
+    clear: both;
+}
+
+.vib-banner-bottom .vib-scroll-animations {
+    height: 400px;
+    padding-bottom: 18px;
+}
+
+.vib-banner-bottom .scrollsection {
+    background: url(../img/bkg_city_card.jpg);
+    background-repeat: repeat-x;
+    height: 340px;
+    background-position: left bottom;
+    background-size: auto 175px;
+    padding-top: 0;
+    overflow: hidden;
+    -webkit-animation: city 100s linear infinite;
+    animation: city 100s linear infinite;
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+
+}
+
+
+
+.vib-banner-bottom .title {
+    margin-top: 40px;
+}
+
+.vib-scroll-animations .scrollsection .image img {
+    position: relative;
+    z-index: 99;
+    transform: scale(0.85);
+    transition: 0.8s all;
+    max-width: 280px;
+}
+
+.vib-scroll-animations .scrollsection .image::before {
+    content: "";
+    position: absolute;
+    height: calc(100% - 40px);
+    left: 50%;
+    margin-left: -1px;
+    z-index: 1;
+    background: url(../img/doct_2x.png);
+    width: 3px;
+    background-repeat-x: no-repeat;
+    background-size: contain;
+    bottom: -40px;
+}
+
+.vib-scroll-animations .scrollsection .image::after {
+    content: "";
+    position: absolute;
+    height: 12px;
+    left: 50%;
+    margin-left: -6px;
+    z-index: 1;
+    bottom: 0;
+    background: url(../img/nav_doct.png);
+    width: 12px;
+    background-size: contain;
+    bottom: 0px;
+}
+
+.vib-scroll-animations .scrollsection .box {
+    box-shadow: none;
+    border-radius: 8px;
+    padding: 6px;
+    background: none;
+    position: relative;
+    z-index: 9;
+    transition: 0.5s all;
+    text-align: center;
+    /*box-shadow: 0px 4px 14px rgb(0 0 0 / 25%), 0px 4px 4px rgb(0 0 0 / 5%), 2px 2px 8px rgb(0 0 0 / 5%);*/
+}
+
+.vib-scroll-animations .scrollsection .box:hover {
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.05), 2px 2px 8px rgba(0, 0, 0, 0.05);
+    background: #fff;
+}
+
+.vib-scroll-animations .scrollsection .box:hover img {
+    transform: scale(1);
+}
+
+
+
+.vib-scroll-animations .scrollsection .box:hover .info {
+    opacity: 1;
+    transition: 0.8s all;
+    height: auto;
+    margin-top: 13px;
+    ;}
+
+.vib-scroll-animations .scrollsection .info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    transition: 0.3s all;
+}
+
+.vib-scroll-animations .scrollsection .box p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.vib-scroll-animations .scrollsection .item.big .box p {
+    font-size: 12px;
+}
+
+.vib-scroll-animations .scrollsection .item.big .box .vib-v2-news-best {
+    font-size: 10px;
+}
+
+.vib-scroll-animations .scrollsection .item .image.-active:hover {
+    /* cursor: pointer; */
+}
+
+.vib-scroll-animations .scrollsection .item {
+    /*display: inline-block;
+    position: relative;
+    bottom: 2px;
+    overflow: hidden;*/
+}
+
+.vib-scroll-animations .scrollsection .item::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.vib-banner-bottom .scrollsection .item {
+    width: 490px;
+    height: 100%;
+}
+
+.vib-banner-bottom .scrollsection .item:hover {
+    cursor: default;
+}
+
+.vib-scroll-animations .scrollsection .item .image {
+    display: flex;
+    justify-content: center;
+}
+
+.vib-scroll-animations .scrollsection .item.big .image img {
+    max-width: 240px;
+}
+
+.vib-scroll-animations .scrollsection .item.big .box {
+    margin-top: 32px;
+}
+
+.vib-scroll-animations .scrollsection .item .image img {
+    max-width: 200px;
+}
+
+/* Scrollbar */
+.controls {
+    margin: 25px 0;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    top: -90px;
+}
+
+.controls .prevPage {
+    position: absolute;
+    left: 10px;
+}
+
+.controls .nextPage {
+    position: absolute;
+    right: 10px;
+}
+
+.controls .button {
+    width: 60px;
+    height: 60px;
+    box-shadow: 0px 0.618557px 8.09px rgb(188 188 188 / 40%);
+    border-radius: 100%;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.controls .button.disabled {
+    opacity: 0;
+}
+
+.controls .button img {
+    max-width: 40px;
+    border-radius: 100%;
+    margin-top: 10px;
+    transform: rotate(270deg);
+}
+
+.controls .button.prevPage img {
+    transform: rotate(90deg);
+}
+
+.scrollbar {
+    margin-top: 4px;
+    height: 6px;
+    background: #fff;
+    line-height: 0;
+    opacity: 0;
+}
+.vib-banner-bottom:hover .scrollbar{ opacity: 1;}
+.scrollbar .handle {
+    width: 100px;
+    height: 100%;
+    background: #E4E4E4;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.scrollbar .handle .mousearea {
+    position: absolute;
+    top: -9px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.vib-v2-news-best {
+    position: relative;
+    display: block;
+    width: fit-content;
+    height: 23px;
+    text-align: left;
+    padding-left: 25px;
+    padding-right: 10px;
+    top: 0;
+    left: 4px;
+    color: #000000;
+    font-size: 10px;
+    z-index: 3;
+    transition: all .3s;
+    text-transform: uppercase;
+    background-position: center right;
+    background-size: 100%;
+    line-height: 24px;
+    margin-top: 0px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    background: linear-gradient(94.64deg, rgba(255, 89, 34, 0.2) 3.75%, rgba(254, 155, 37, 0.2) 96.25%);
+    border-radius: 43px;
+    font-size: 10px;
+}
+
+.vib-v2-news-best:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -5px;
+    top: 0px;
+    width: 23px;
+    height: 23px;
+    /* background-image: url(https://www.vib.com.vn/wps/wcm/connect/1eedfa93-8389-4640-818a-e724c54834e4/news-best-start-icon.png?MOD=AJPERES&attachment=true&id=1640921522077); */
+    background-image: var(--icon-news-best-star);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.vib-v2-news-best:before {
+    border-right: none;
+}
+
+.vib-scroll-animations .scrollsection .box a.vib-v2-btn-dk01 {
+    display: none;
+} 
+
+@media (min-width: 1024px) {
+    .vib-banner-bottom .scrollsection:hover .item{
+        touch-action: none;
+        cursor: grab;
+        user-select: auto;
+    }
+
+    .vib-banner-bottom .scrollsection.brabbing .item{
+        touch-action: none;
+        cursor: grabbing;
+        user-select: auto;
+    }
+    .vib-banner-bottom .scrollsection:hover{
+        -webkit-animation-play-state: paused;
+        animation-play-state: paused;
+    }
+    .controls .button:hover {
+        box-shadow: 0px 0.618557px 10.09px rgb(246 146 30 / 60%);
+    }
+}
+
+.vib-scroll-animations .scrollsection .box img.icon-epclise {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+
+    .vib-scroll-animations .scrollsection .box a.vib-v2-btn-dk01:hover:before{background: none;}
+    .vib-scroll-animations .scrollsection{
+        -webkit-animation: city 130s linear infinite;
+        animation: city 130s linear infinite;
+    }
+    .vib-scroll-animations.stop-scroll .scrollsection  { 
+        animation-play-state: paused; 
+        -webkit-animation-play-state: paused;
+    }
+
+    .vib-scroll-animations .scrollsection .box a:not(.vib-v2-btn-dk01) {
+        pointer-events: none;
+        position: relative;
+    }
+
+    .vib-scroll-animations .scrollsection .box a {
+        display: block;
+    }
+
+    .vib-scroll-animations .scrollsection .box.touched a {
+        pointer-events: all;
+    }
+
+    .vib-banner-bottom .scrollsection .item {
+        width: 380px;
+    }
+    .vib-banner-bottom .scrollsection .item.item-tablet{width: 280px;}
+    .vib-scroll-animations .scrollsection .item.big .image img {
+        max-width: 220px;
+    }
+
+    .vib-scroll-animations .scrollsection .item .image img {
+        max-width: 180px;
+        margin: 0 auto;
+    }
+
+    .vib-scroll-animations .scrollsection .box .icon-epclise {
+        width: 24px;
+        display: block !important;
+        height: 24px;
+        position: absolute;
+        left: 10%;
+        bottom: 15px;
+        background-size: contain;
+        border: none;
+        box-shadow: none;
+        transform: scale(1);
+        background-repeat: no-repeat;
+        animation-name: touchAnimation;
+        animation-duration: 1.3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    
+
+    .vib-scroll-animations .scrollsection .box:hover .icon-epclise {
+        /* width: 24px; */
+        /* height: 24px; */
+        /* bottom: 7px; */
+        left: 10px;
+        display: none !important;
+    }
+
+    .vib-scroll-animations .scrollsection .box a.vib-v2-btn-dk01 {
+        display: block;
+    }
+
+    .vib-scroll-animations .scrollsection .box a.vib-v2-btn-dk01 {
+        background: none;
+        color: #000;
+        font-size: 12px;
+        padding: 0;
+        padding-left: 10px;
+    }
+
+    .vib-scroll-animations .scrollsection .box a.vib-v2-btn-dk01::after {
+        background: var(--icon-Angle_right_black) no-repeat;
+        background-size: 18px;
+        content: "";
+        width: 18px;
+        height: 20px;
+        display: block;
+        margin-left: 0px;
+        float: right;
+        position: relative;
+        top: 3px;
+    }
+}
+
+
+
+@media (max-width: 767px) {
+    .vib-scroll-animations .scrollsection{
+        -webkit-animation: city 170s linear infinite;
+        animation: city 170s linear infinite;
+    }
+    .vib-banner-bottom .scrollsection {
+        background-position-x: 0
+    }
+
+    .vib-scroll-animations .scrollsection .item {
+        width: 280px;
+    }
+
+    .vib-scroll-animations .scrollsection .item:nth-of-type(1) {
+        left: -30px;
+    }
+}
+
+@media (min-width: 1024px) {
+  .vib-scroll-animations .scrollsection .box:not(:hover) .info {
+    visibility: hidden
+  }
+
+    .vib-banner-bottom .container {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .vib-banner-bottom .button-next {
+        position: absolute;
+        right: -90px;
+        top: 340px;
+        z-index: 999;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0px 0.618557px 8.09px rgba(188, 188, 188, 0.4);
+        border-radius: 100%;
+        background: #fff;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .vib-banner-bottom .button-next:hover {
+        box-shadow: 0px 0.618557px 10.09px rgba(246, 146, 30, 0.6);
+    }
+
+    .vib-banner-bottom .button-next img {
+        max-width: 40px;
+        border-radius: 100%;
+        margin-top: 10px;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1400px) {
+        .controls .nextPage {
+            right:0;
+        }
+
+        .controls .prevPage {
+            left: 0;
+        }
+
+        .vib-banner-bottom .scrollsection .item {
+            width: 415px;
+        }
+    }
+
+    /*
+  .vib-banner-bottom .button-next::before{
+    background: url(https://10.50.164.10/static/theme/2022/Angle_right_black.svg) no-repeat;
+    background-size: 40px; content: ""; width: 40px; height: 40px; 
+    position: absolute; 
+    left:0px; z-index: 9;
+    animation-name: showhidebuttonAnimation;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out; 
+    animation-iteration-count: infinite; 
+  } 
+
+.button-next::after{  
+    background: url(https://10.50.164.10/static/theme/2022/Angle_right_black.svg) no-repeat; 
+    background-size: 40px; content: ""; width: 40px; height: 40px; 
+    position: absolute; 
+    left:15px; z-index: 9;
+    
+    animation-fill-mode: forwards;
+    animation-name: showhidebuttonAnimation1;  
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out; 
+    animation-iteration-count: infinite;  
+  }   
+ */
+}
+
+/*
+@keyframes showhidebuttonAnimation {
+  from {
+    opacity: 0;
+    right: -20px; 
+  }
+  50% {
+    opacity: 1; 
+    right:-40px;
+  }
+  100% {
+    opacity: 0; 
+    left:0;   
+  }
+}*/
+@keyframes showhidebuttonAnimation {
+    from {
+        opacity: 0;
+        left: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+        left: 20px
+    }
+
+    51% {
+        opacity: 1;
+        left: 20px
+    }
+
+    100% {
+        opacity: 0;
+        left: 20px;
+    }
+}
+
+@keyframes showhidebuttonAnimation1 {
+    from {
+        opacity: 0;
+        left: 15px;
+    }
+
+    50% {
+        opacity: 1;
+        left: 35px
+    }
+
+    100% {
+        opacity: 0;
+        left: 35px;
+    }
+}
+@keyframes touchAnimation {
+    from {
+        transform: scale(1);
+		opacity: 1;
+    }
+
+    20% {
+        transform: scale(1.2);
+		opacity: 1;
+    }
+
+    40% {
+        transform: scale(1.4);
+		opacity: 0.8;
+    }
+
+    60% {
+        transform: scale(1.6);
+		opacity: 0.5;
+    }
+    
+
+    80% {
+        transform: scale(1.8);
+		opacity: 0;
+    }
+
+    100% {
+		opacity: 0;
+    }
+}
+
+@-webkit-keyframes city{
+	0%{
+		background-position:0 100%;
+	}
+	100%
+	{
+        background-position:100% 100%;
+        
+	}
+}  
+@keyframes city{   
+	0%
+	{
+		background-position:0 100%;
+         
+	}
+	100%
+	{  
+        background-position:100% 100%; 
+	}
+}

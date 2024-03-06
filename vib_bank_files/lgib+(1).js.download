@@ -1,0 +1,76 @@
+
+function banner_right_bg() {
+    $('.banner_right_bg ').each(function(){
+        if($(window).width() < 767) 
+        {
+            var top_banner = $(this).find('img').attr("image-mobile");
+            $(this).find('img').attr("src",  top_banner);
+        } else if($(window).width() >= 768 && $(window).width() < 992) {
+            var top_banner = $(this).find('img').attr("image-tablet");
+            $(this).find('img').attr("src", top_banner);
+        } else {
+            $(this).find('img').each(function(){
+                var top_banner = $(this).attr("image-desktop");
+                $(this).attr("src", top_banner);
+            });
+        }
+    })	
+
+    
+    
+}
+
+$(document).ready(function() {
+    banner_right_bg();   
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+        $('#tab-id-02 .btn_popup_store_mobile').attr("href", 'https://apps.apple.com/vn/app/myvib-corp/id1588061894?l=vi');
+    }   
+    $(window).on('resize', function() {
+        banner_right_bg();
+    });
+    $(".vib-v2-link-login-home,.vib-v2-form-login-link").click(function(){
+        // $("#vib2018-login-popup-ib-personal").attr("src", $('.tab-id-01').attr("data-frame-link"));
+        $("#vib2018-login-popup-ib-business").attr("src", $('.tab-id-02').attr("data-frame-link"));
+        $(".vib-v2-content-form-login").addClass("active"); 
+         $(".vib-v2-bg_black").show();
+         
+    });
+    $(".vib-v2-exit-form-login").click(function(){
+       $(".vib-v2-content-form-login").removeClass("active");  
+       $(".vib-v2-bg_black").hide();
+       $("body").removeClass("body_scroll");
+     });
+     $(".vib-v2-bg_black").click(function(){
+       $(".vib-v2-content-form-login").removeClass("active");   
+       $(this).hide();
+     });
+     
+     $(".tab-id-01").click(function(){
+          $(this).addClass("active");
+        //   if($("#" + $(this).attr("data-frame-id")).attr("src") == 'javascript:void(0);') {
+        //       $("#" + $(this).attr("data-frame-id")).attr("src", $(this).attr("data-frame-link"));
+        //       $("#" + $(this).attr("data-frame-id")).attr("class", "").addClass($(this).attr("data-class"));
+        //   }
+          $(".tab-id-02, #sub-txt2, #sub-txt1 .vib-txt-form-box-ib ").removeClass("active");  
+          $("#tab-id-01").show();
+          $("#tab-id-02").hide();
+          $("#sub-txt1, #sub-txt1 .vib-txt-form-box-ib ").addClass("active");
+          $("#ib-bussiness").hide();
+          $("#ib-personal").fadeIn();
+     });
+     $(".tab-id-02").click(function(){
+          $(this).addClass("active");
+          if($("#" + $(this).attr("data-frame-id")).attr("src") == 'javascript:void(0);') {
+              $("#" + $(this).attr("data-frame-id")).attr("src", $(this).attr("data-frame-link"));
+              $("#" + $(this).attr("data-frame-id")).attr("class", "").addClass($(this).attr("data-class"));
+              //alert($("#" + $(this).attr("data-frame-id")).contents().find('.forgot-password-ib').html());
+              $("#" + $(this).attr("data-frame-id")).contents().find('.forgot-password-ib').hide();
+          }
+          $(".tab-id-01, #sub-txt1").removeClass("active");  
+          $("#tab-id-02").show();
+          $("#tab-id-01").hide();
+          $("#sub-txt2").addClass("active");
+          $("#ib-personal").hide();
+          $("#ib-bussiness").fadeIn();
+     });
+});

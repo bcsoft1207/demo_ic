@@ -1,0 +1,273 @@
+function input_action() {
+    var $input = $("input.gsc-input");
+    // $(".gsst_a").hide();
+    //$input.off("input focus");
+    
+    
+   
+    
+    $input.on("input focus", function (e) {
+        if ($(this).parents().hasClass("search-in-menu")) {
+            $(".gssb_c").addClass("hidden");
+        } else {
+            $(".gssb_c").removeClass("hidden");
+        }
+        $(this).parents(".gsc-control-searchbox-only").css("z-index", "9999");
+
+        $("body").css({ overflow: "hidden", "touch-action": "none" });
+        if ($(window).width() >= 1000){
+            $("body").css({"padding-right": "5px"});
+        } 
+        // else {
+        //     $input.prop('selectionStart', $input.val().length);
+        // }
+       // $(".wpthemeFrame").css({ overflow: "hidden", "height": "100vh"});
+        if (!$("#vib-v2-bg_black").is(":visible")) {
+            $("#vib-v2-bg_black").show();
+        }
+
+        if ($(this).val() === "") {
+            $(this).parents(".vib-v2-wrapper_new").find(".owner-suggest").addClass("suggest-active");
+            setTimeout(() => $(this).parents(".vib-v2-wrapper_new").find(".owner-suggest").addClass("suggest-active"), 100);
+        } else {
+            // $(this).parents('.vib-v2-wrapper_new').find(".owner-suggest").removeClass('suggest-active')
+            setTimeout(() => $(this).parents(".vib-v2-wrapper_new").find(".owner-suggest").removeClass("suggest-active"), 100);
+            $(".gsst_a").show();
+        }
+        if ($(e.target).val() != "") {
+            $(".error_blank").addClass("hidden");
+        }
+        
+        // Chặn sự kiện cuộn trên Safari di động
+        $(document).on("touchmove", function (event) {
+            if (!$(event.target).hasClass("scrollable")) {
+                event.preventDefault(); // Chặn cuộn trang
+            }
+        });
+
+        // Chặn sự kiện cuộn trên Safari trên máy tính để bàn
+        // $(document).on("wheel", function (event) {
+        //     if (!$(event.target).hasClass("scrollable")) {
+        //         event.preventDefault(); // Chặn cuộn trang
+        //     }
+        // });
+
+        if (window.location.href.indexOf("/ngan-hang-so/myvib3") > 0 || window.location.href.indexOf("/ngan-hang-so/myvib") > 0 || window.location.href.indexOf("/ngan-hang-so/vib-checkout") > 0) {
+            const IS_MAC = navigator.userAgent.indexOf("Mac") !== -1;
+            if (IS_MAC) window.removeEventListener("wheel", handleMouseWheel3, { passive: false });
+            else window.removeEventListener("wheel", handleMouseWheel2, { passive: false });
+        }
+    });
+
+    $("#vib-v2-bg_black").click(function () {
+        $("#vib-v2-bg_black").hide();
+        $(".gssb_c").removeClass("hidden");
+        // $(".gsst_a").hide();
+        $(".search-result-box .owner-suggest").removeClass("suggest-active");
+        $input.parents(".gsc-control-searchbox-only").css("z-index", "auto");
+        $("body").css({ overflow: "", "touch-action": "initial" ,"padding-right": "" });
+        $(".wpthemeFrame").css({ overflow: "", "height": ""});
+        // Bỏ chặn cuộn trang
+        $(document).off("touchmove");
+        $(document).off("wheel");
+
+        if (window.location.href.indexOf("/ngan-hang-so/myvib3") > 0 || window.location.href.indexOf("/ngan-hang-so/myvib") > 0 || window.location.href.indexOf("/ngan-hang-so/vib-checkout") > 0) {
+            const IS_MAC = navigator.userAgent.indexOf("Mac") !== -1;
+            if (IS_MAC) {
+                window.addEventListener("wheel", handleMouseWheel3, { passive: false });
+            } else {
+                window.addEventListener("wheel", handleMouseWheel2, { passive: false });
+            }
+        }
+    });
+    $input.keypress(function (event) {
+        sessionStorage.setItem("source", "0");
+    });
+    $(".gsc-search-button").click(function (e) {
+        if ($(e.target).parent().prev().find("input").val() == "") {
+            $(e.target).closest(".vib-v2-wrapper_new").find("div.error_blank").removeClass("hidden");
+        }
+    });
+    $(".search-result-box input.gsc-input").on("input focus", function (e) { 
+        $(".wpthemeFrame").css({ overflow: "hidden", "height": "100vh"});
+    });  
+}
+
+function clickHistoryLink() {
+    sessionStorage.setItem("source", "1");
+}
+
+function clickPopularLink() {
+    sessionStorage.setItem("source", "2");
+}
+
+function clickProductList(link_click) {
+    if(link_click != ""){
+        $.ajax({
+            type: "post",
+            url: "/VIBMicroSite/content/jsp/updateclickview.jsp",
+            data: {
+                link: link_click,
+                data_type: 2
+            },
+            success: function (result) {
+            },
+        });
+    }
+
+}
+
+let scrollPosition = 0;
+$(document).ready(function () {
+    $("#vib-v2018-loading").addClass("hidden");
+    $(".vib-v2-link-search-home, .vib-v2-hamburger-menu").click(function () {
+        initSearchGoogleTool();
+        if ($(".vib-v2-search-content.active").length) {
+            $(".vib-v2-search-content.active").find("input.gsc-input").val("").focus();
+            console.log("focus");
+            $(".vib-v2-search-content.active").find(".owner-suggest").addClass("suggest-active");
+        } else {
+            $(".search-in-menu").find("input.gsc-input").val("");
+            $(".search-in-menu").find(".owner-suggest").addClass("suggest-active");
+        }
+        $(".vib-v2-search-content.search-gg .gsst_a").hide();
+    }); 
+});
+var initFlag = true;
+function initSearchGoogleTool() {
+    if (window.location.href.indexOf("/en/") > 0) {
+        $(".error_blank").html("Please enter a keyword");
+        $("input.gsc-input").attr("placeholder", "Enter a keyword");
+    } else {
+        $(".error_blank").html("Bạn vui lòng nhập từ khóa");
+        $("input.gsc-input").attr("placeholder", "Nhập từ khoá");
+    }
+    $("a.gsst_a").click(function (e) {
+        setTimeout(() => $(this).parents(".vib-v2-wrapper_new").find(".owner-suggest").addClass("suggest-active"), 100);
+        // $(this).parents(".vib-v2-wrapper_new").find(".owner-suggest").addClass('suggest-active');
+    });
+
+    //console.log("initSearchGoogleTool input_action");
+    input_action();
+
+    if(initFlag){
+        initFlag = false;
+    }else{
+        return;
+    }
+    $(".error_blank").addClass("hidden");
+    // $(".keyword-history").html("");
+    $(".group-1").hide();
+    getKeywordRecent();
+    var pathPopularLink = "/wps/wcm/connect/vib20-personal-vn/search/popular-keyword?source=library&srv=cmpnt&cmpntid=34e3496c-4df6-48fd-8c75-4f0c439d6645";
+    var pathProduct = "/wps/wcm/connect/vib20-personal-vn/search/list-product?source=library&srv=cmpnt&cmpntid=64045a30-ea88-4215-99db-b9dfd4b418df";
+    var pathTitle1 = "/wps/wcm/connect/vib20-personal-vn/search/title-search-near?source=library&srv=cmpnt&cmpntid=740e5293-b8c0-42b5-8f00-da1e561b8316";
+    var pathTitle2 = "/wps/wcm/connect/vib20-personal-vn/search/title-search-popular?source=library&srv=cmpnt&cmpntid=740e5293-b8c0-42b5-8f00-da1e561b8316";
+    var pathTitle3 = "/wps/wcm/connect/vib20-personal-vn/search/title-search-product?source=library&srv=cmpnt&cmpntid=740e5293-b8c0-42b5-8f00-da1e561b8316";
+
+    if (window.location.href.indexOf("/en/") > 0) {
+        pathPopularLink = "/wps/wcm/connect/vib20-personal-en/search/popular-keyword?source=library&srv=cmpnt&cmpntid=34e3496c-4df6-48fd-8c75-4f0c439d6645";
+        pathProduct = "/wps/wcm/connect/vib20-personal-en/search/list-product?source=library&srv=cmpnt&cmpntid=64045a30-ea88-4215-99db-b9dfd4b418df";
+        pathTitle1 = "/wps/wcm/connect/vib20-personal-en/search/title-search-near?source=library&srv=cmpnt&cmpntid=740e5293-b8c0-42b5-8f00-da1e561b8316";
+        pathTitle2 = "/wps/wcm/connect/vib20-personal-en/search/title-search-popular?source=library&srv=cmpnt&cmpntid=740e5293-b8c0-42b5-8f00-da1e561b8316";
+        pathTitle3 = "/wps/wcm/connect/vib20-personal-en/search/title-search-product?source=library&srv=cmpnt&cmpntid=740e5293-b8c0-42b5-8f00-da1e561b8316";
+    }
+    $(".keyword-popular").load(pathPopularLink);
+    $(".group-3-product").load(pathProduct);
+    $(".title-search-near").load(pathTitle1);
+    $(".title-search-popular").load(pathTitle2);
+    $(".title-search-product").load(pathTitle3);
+
+    
+}
+
+function removeKeywordHistory(keywordRemove) {
+    var keywordHistory = getCookie("KEYWORD_HISTORY");
+    if (keywordHistory != null && keywordHistory != "") {
+        try {
+            keywordHistory = decodeURI(keywordHistory);
+            keywordHistoryList = JSON.parse(keywordHistory);
+            var dataList = [];
+            var dataListKeyword = [];
+            keywordHistoryList.forEach((element) => {
+                if (!dataListKeyword.includes(element.trim()) && element.trim() != keywordRemove) {
+                    dataListKeyword.push(element.trim());
+                    dataList.push({
+                        url: encodeURIComponent(element.trim()),
+                        keyword: element.trim(),
+                    });
+                }
+            });
+
+            if (dataList.length > 0) {
+                $(".group-1").show();
+            } else {
+                $(".group-1").hide();
+            }
+            setCookie("KEYWORD_HISTORY", encodeURI(JSON.stringify(dataListKeyword)), 365);
+            $(".keyword-history").html("");
+            if (window.location.href.indexOf("/vn/") < 0) {
+                $('.keyword-history').html(dataList.splice(0, 10).map(DataLoadTemplateEn).join(''));
+            } else {
+                $('.keyword-history').html(dataList.splice(0, 10).map(DataLoadTemplateVn).join(''));
+            }
+        } catch (err) {
+            setCookie("KEYWORD_HISTORY", "", 0);
+        }
+    }
+};
+
+$(function () {
+    if (window.location.href.indexOf("/vn/") < 0) {
+        $("input.gsc-input").attr("placeholder", "Enter a keyword");
+    } else {
+        $("input.gsc-input").attr("placeholder", "Nhập từ khoá");
+    }
+});
+function getKeywordRecent() {
+    try {
+        var keywordHistory = getCookie("KEYWORD_HISTORY");
+        if (keywordHistory != null && keywordHistory != "") {
+            keywordHistory = decodeURI(keywordHistory);
+            keywordHistoryList = JSON.parse(keywordHistory);
+            var dataList = [];
+            var dataListKeyword = [];
+            keywordHistoryList.forEach((element) => {
+                if (dataList.length > 20) {
+                    return;
+                }
+                if (!dataListKeyword.includes(element.trim())) {
+                    dataListKeyword.push(element.trim());
+                    dataList.push({
+                        url: encodeURIComponent(element.trim()),
+                        keyword: element.trim(),
+                    });
+                }
+            });
+            if (dataList.length > 0) {
+                $(".group-1").show();
+                setCookie("KEYWORD_HISTORY", encodeURI(JSON.stringify(dataListKeyword)), 365);
+            }
+            $(".keyword-history").html("");
+            if (window.location.href.indexOf("/vn/") < 0) {
+                $('.keyword-history').html(dataList.splice(0, 10).map(DataLoadTemplateEn).join(''));
+            } else {
+                $('.keyword-history').html(dataList.splice(0, 10).map(DataLoadTemplateVn).join(''));
+            }
+        }
+    } catch (err) {
+        setCookie("KEYWORD_HISTORY", "", 0);
+    }
+} 
+const DataLoadTemplateVn = (cardStatusData) => `
+    <div class="col-auto">
+        <span class="close-button-x" onclick="removeKeywordHistory('${cardStatusData.keyword}');"></span>
+        <a href="/vn/tim-kiem?q=${cardStatusData.url}" class="history-link" onclick="return clickHistoryLink();">${cardStatusData.keyword}</a>
+    </div>
+`;
+const DataLoadTemplateEn = (cardStatusData) => `
+    <div class="col-auto">
+        <span class="close-button-x" onclick="removeKeywordHistory('${cardStatusData.keyword}');"></span>
+        <a href="/en/tim-kiem?q=${cardStatusData.url}" class="history-link" onclick="return clickHistoryLink();">${cardStatusData.keyword}</a>
+    </div>
+`;
